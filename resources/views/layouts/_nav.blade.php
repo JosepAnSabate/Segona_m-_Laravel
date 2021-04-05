@@ -25,9 +25,11 @@
                         </a>
                     </div>
                 </li>
-                <li class="nav-item mx-0 mx-lg-1 "><a
-                        class=" borderMarcador nav-link text-lowercase py-3 px-0 px-lg-3 rounded js-scroll-trigger text-decoration-none text-reset"
-                        href="#"><span>Nuevo artículo</span></a></li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('announcement.new') }}">
+                  Nuevo Anuncio
+                  </a>
+                </li>
                 @guest
                 @if (Route::has('login'))
                 <li class="nav-item mx-0 mx-lg-1 ">
@@ -51,6 +53,8 @@
                         href="#">Logout</a>
                 </li>
  @endguest
+    
+               
     </ul>
         </div>
     </div>
