@@ -22,6 +22,23 @@
                                     @enderror
                         </div>
                         <div class="form-group">
+                        <label class="form-label" for="categories">Categorias</label>
+                        <select class="form-select" id="categoriesJ" name="category">
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}" {{old('category') == $category->id ? 'selected' : ''}}>
+                                {{$category->name}}</option>
+                            @endforeach
+                            </select>
+                    </div>
+                                                    
+                            <div class="form-group">
+                                <label for="announcementPrice">Precio</label>
+                                <input type="number" step="0.01" class="form-control" id="announcementPrice" aria-describedby="priceHelp" name="price" value="{{old("price")}}">
+                                @error('price')
+                                <small id="priceHelp" class="form-text" style="color:red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        <div class="form-group">
                             <label for="announcementBody">Anuncio</label>
                             <textarea class="form-control" name="body" id="announcementBody" cols="30"
                                 rows="10">{{old("body")}}</textarea>

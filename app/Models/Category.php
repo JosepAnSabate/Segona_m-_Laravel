@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Announcement;
+use Illuminate\Database\Eloquent\Factories\HasFactory; 
 use Illuminate\Database\Eloquent\Model;
+
 
 class Category extends Model
 {
-    use HasFactory;
+    /* use HasFactory;  */
+
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class);
+    }
 }
