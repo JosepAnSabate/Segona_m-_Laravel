@@ -1,41 +1,46 @@
 
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg text-uppercase py-0 border-bottom" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger text-decoration-none text-reset prontologo"
-            href="{{ url('/') }}">Segmano</a>
-        <button
-            class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
-            type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-            aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
+<nav class="navbar navbar-expand-lg text-uppercase py-0 border-bottom " id="mainNav">
+
+    <div class="container-fluid">
+        <a class="navbar-brand  text-decoration-none text-reset prontologo"
+            href="{{ url('/') }}">Segona mà</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="iconNav"><i class="bi bi-list"></i></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown py-2">
-                    <a id="navbarDropdown"
-                        class=" nav-link text-lowercase dropdown-toggle text-decoration-none text-reset" href="#"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <span>Categorias</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-decoration-none text-reset"
-                            href="#">
-                        </a>
-                    </div>
-                </li>
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('announcement.new') }}">
-                  Nuevo Anuncio
+                  Nou Anunci
                   </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarSupportedContent" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       @foreach ($categories as $category)
+                        <li><a class="dropdown-item" href="{{route('category.announcements',['name'=>$category->name,'id'=>$category->id])}}">
+                            {{$category->name}}</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        @endforeach
+                    </ul>
                 </li>
                 @guest
                 @if (Route::has('login'))
-                <li class="nav-item mx-0 mx-lg-1 ">
+                
+            
+                <li class="nav-item mx-r mx-lg-1 ">
                     <a class="borderMarcador nav-link text-lowercase py-3 px-0 px-lg-3 rounded js-scroll-trigger text-decoration-none text-reset"
                         href="{{route('login')}}"><span>Login</span></a>
                 </li>
+                
                 @endif    
                 @if (Route::has('register'))
                 <li class="nav-item mx-0 mx-lg-1">
@@ -49,9 +54,19 @@
                         @csrf
                     </form>
                     <a id="logoutBtn"
-                        class=" nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-decoration-none text-reset"
+                        class=" nav-link py-3 px-0 rounded js-scroll-trigger text-decoration-none text-reset"
                         href="#">Logout</a>
                 </li>
+                @if (Auth::user()->is_revisor)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('revisor.home') }}">
+                                Revisor Casa
+                                <span class="badge rounded-pill bg-danger">
+                                    
+                                </span>
+                            </a>
+                        </li>
+                        @endif      
  @endguest
     
                

@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 
 use App\models\Announcement; 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\AnnouncementRequest;
 
@@ -17,10 +18,10 @@ class HomeController extends Controller
         $categories = Category::all();
        View::share('categories', $categories);
     }
-    public function index()
+    /* public function index()
     {
         return view('welcome');
-    }
+    } */
    
     public function newAnnouncement() 
     {
@@ -34,7 +35,14 @@ class HomeController extends Controller
         $a->body = $request->input('body');
         $a->category_id = $request->input('category');
         $a->price = $request->input('price');
+        $a->user_id = Auth::id();
         $a->save();
         return redirect()->route('home')->with('announcement.create.success','Anuncio creado con exito');
+    }
+
+    public function details($id) 
+    {
+        $announcement = Announcement::findOrFail($id);
+        return view("announcement.details",["announcement"=>$announcement]);
     }
 }

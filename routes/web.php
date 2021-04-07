@@ -1,6 +1,8 @@
 <?php
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\RevisorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,8 +14,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/', [PublicController::class,'index'])->name('home');
 
 Route::get('/announcement/new', [HomeController::class,'newAnnouncement'])->name('announcement.new');
 
 Route::post('/announcement/create', [HomeController::class,'createAnnouncement'])->name('announcement.create');
+
+Route::get('/category/{name}/{id}/announcements', [PublicController::class,'announcementsByCategory'])->name('category.announcements');
+
+Route::get('/announcement/{id}', [HomeController::class,'details'])->name("announcement.details");
+
+Route::get('/revisor',[RevisorController::class,'index'] )->name('revisor.home');
+
+
+Route::post('/revisor/announcement/{id}/accept',[RevisorController::class,'accept'])->name('revisor.announcement.accept');
+Route::post('/revisor/announcement/{id}/reject',[RevisorController::class,'reject'])->name('revisor.announcement.reject');

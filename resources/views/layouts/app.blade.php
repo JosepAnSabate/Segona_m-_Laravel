@@ -14,12 +14,20 @@
 <link rel="stylesheet" href="{{mix('css/app.css')}}">
 </head>
 <body>
+@if(session('access.denied.revisor.only'))
+    <div class="alert alert-danger">{{session('access.denied.revisor.only')}}</div>
+@endif
     <div id="app">
         @include('layouts._nav')
-        <main class="container py-4">
+        @if(session('announcement.create.success'))
+            <div class="alert alert-success">{{session('announcement.create.success')}}</div>
+        @endif
+        <main>
             @yield('content')
         </main>
         </div>
+
+
 
  <script>
         const logout = document.getElementById('logoutBtn');
