@@ -3,7 +3,7 @@
 <div class='container'>
    <div class='row'>
     <div class='col-12 text-center'>
-       <h1>Anuncis per categoria: {{$category->name}}</h1>
+       <h1>{{__('ui.catanunci')}} {{$category->name}}</h1>
     </div>
     </div>
 

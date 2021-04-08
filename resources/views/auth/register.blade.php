@@ -5,8 +5,8 @@
 <section id="book-a-table" class="book-a-table">
     <div class="container">
       <div class="section-title">
-        <h2>Registrate a<span> Segmano</span></h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        <h2>{{__('ui.logintitol')}}<span> Segmano</span></h2>
+        <p> {{__('ui.regcoment')}}</p>
       </div>
       @if ($errors->any())
       <div class="alert alert-danger">
@@ -62,7 +62,7 @@
           <div class="error-message"></div>
           <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
         </div>
-        <div class="text-center"><button type="submit">Registrar</button></div>
+        <div class="text-center"><button type="submit button" class="btn btn-primary">{{__('ui.regb')}}</button></div>
       </form>
     </div>
   </section><!-- End Book A Table Section -->

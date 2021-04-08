@@ -33,13 +33,14 @@
 								<span class="fa fa-star"></span>
 								<span class="fa fa-star"></span>
 							</div>
-							<span class="review-no">Publicat el: {{$announcement->created_at->format('d/m/Y')}}</span>
+							<span class="review-no">{{__('ui.detailsdata')}} {{$announcement->created_at->format('d/m/Y')}}</span>
+							<p class="vote"><strong>{{__('ui.detailsautor')}} </strong>{{$announcement->user->name}}. </p>
 						</div>
-						<h4 class="price">Preu actual: <span> {{$announcement->price}}€</p></strong></span></h4>
-                        <p class="product-description">Descripció del producte{{$announcement->body}}</p>
-                        <br>				
-						<p class="vote"><strong>Autor: </strong>{{$announcement->user->name}}. </p>
-						<h4 class="sizes">Categoria: <a href="{{route('category.announcements',
+						<p class="product-description">{{__('ui.detailsdescription')}} {{$announcement->body}}</p>
+						<br>
+						<br>
+						<h4 class="price">{{__('ui.detailsprice')}}<span> {{$announcement->price}}€</p></strong></span></h4>                     			
+						<h4 class="sizes">{{__('ui.detailscategory')}} <a href="{{route('category.announcements',
                 ['name'=>$announcement->category->name,'id'=>$announcement->category->id])}}">
                 {{$announcement->category->name}}</a></h4>
 						<h5 class="colors">colors:
@@ -56,39 +57,6 @@
 			</div>
 		</div>
 	</div>
-<div class="row my-3">
-        <div class="col-12 col-md-8 offset-md-2">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <h3>{{$announcement->title}}</h3>
-                    <em>{{$announcement->created_at->format('d/m/Y')}}</em>
-                    
-                </div>
-                <div class="car-body d-flex justify-content-between">
-                    
-                    <img src="https://via.placeholder.com/150" alt="">
-                    <div>
-                
-                    <p class="stylep"> {{$announcement->body}} </p>
-                    <br>
-                    <br>
-                    <p><strong> {{$announcement->price}} €</p></strong>
-                    </div>
 
-                </div>
-                <div class="card-footer d-flex justify-content-between">
-                <strong>Categoria: <a href="{{route('category.announcements',
-                ['name'=>$announcement->category->name,'id'=>$announcement->category->id])}}">
-                {{$announcement->category->name}}</a></strong>
-                <strong>Autor: {{$announcement->user->name}} </strong>
-                </div>                
-                <a class="ms-auto" href="{{route("announcement.details", ['id'=>$announcement->id])}}"><button type="button" class="btn btn-success">Més informació...</button></a>
-        
-               
-                
-            </div>
-            </div>
-    </div>
-<!-- cards, carrousel i info welc -->
-<p> {{$announcement->body}} </p>
+     
 @endsection

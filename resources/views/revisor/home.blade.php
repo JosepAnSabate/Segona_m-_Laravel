@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <h3>Usuario</h3>
+                        <h3>{{__('ui.user')}}</h3>
                     </div>
                     <div class="col-md-9">
                         #{{$announcement->user->id}}
@@ -23,7 +23,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-3">
-                        <h3>Titulo</h3>
+                        <h3>Títol</h3>
                     </div>
                     <div class="col-md-9">
                         {{$announcement->title}}
@@ -32,11 +32,23 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-3">
-                        <h3>Descripción</h3>
+                        <h3>Descripció</h3>
                     </div>
                     <div class="col-md-9">
                         {{$announcement->body}}
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                
+                @foreach ($announcement->images as $image)
+                    <div class="row md-2">
+                    <div class="col-md-4">
+                        <img src="{{ Storage::url($image->file) }}" class="img-fluid" alt="">
+                    </div>
+                    </div>
+                @endforeach
+                </div>
                 </div>
             </div>
         </div>
@@ -46,7 +58,7 @@
     <div class="col-md-6">
     <form action="{{route('revisor.announcement.reject',['id'=>$announcement->id])}}" method="POST">
         @csrf
-        <button type="submit" class="btn btn-danger">Rechazar</button>
+        <button type="submit" class="btn btn-danger">Descartar</button>
     </form>
     </div>
     <div class="col-md-6 text-right">

@@ -7,10 +7,16 @@
                     
                 </div>
                 <div class="car-body d-flex justify-content-between">
-                    
-                    <img src="https://via.placeholder.com/150" alt="">
-                    <div>
+                <div> 
+                               
+                @foreach ($announcement->images as $image)
+                <div class="carousel-item @if($loop->first)active @endif">
+                <img src="{{Storage::url($image->file)}}"" class="d-block w-100" alt="...">
+                </div>
+                @endforeach
+                   </div> 
                 
+                    <div>
                     <p class="stylep"> {{$announcement->body}} </p>
                     <br>
                     <br>
@@ -19,12 +25,12 @@
 
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                <strong>Categoria: <a href="{{route('category.announcements',
+                <strong>{{__('ui.detailscategory')}} <a href="{{route('category.announcements',
                 ['name'=>$announcement->category->name,'id'=>$announcement->category->id])}}">
                 {{$announcement->category->name}}</a></strong>
-                <strong>Autor: {{$announcement->user->name}} </strong>
+                <strong>{{__('ui.detailsautor')}} {{$announcement->user->name}} </strong>
                 </div>                
-                <a class="ms-auto" href="{{route("announcement.details", ['id'=>$announcement->id])}}"><button type="button" class="btn btn-success">Més informació...</button></a>
+                <a class="ms-auto" href="{{route("announcement.details", ['id'=>$announcement->id])}}"><button type="button" class="btn btn-success">{{__('ui.readmore')}}</button></a>
         
                
                 

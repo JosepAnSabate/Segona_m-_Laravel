@@ -13,7 +13,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('announcement.new') }}">
-                  Nou Anunci
+                  {{__('ui.nouanunci')}}
                   </a>
                 </li>
 
@@ -32,20 +32,27 @@
                         @endforeach
                     </ul>
                 </li>
+
+
+               
+                 @include('layouts._locale',["lang"=>'ca','nation'=>'ca'])  
+                 @include('layouts._locale',["lang"=>'en','nation'=>'gb'])
+
+            
                 @guest
                 @if (Route::has('login'))
                 
             
                 <li class="nav-item mx-r mx-lg-1 ">
-                    <a class="borderMarcador nav-link text-lowercase py-3 px-0 px-lg-3 rounded js-scroll-trigger text-decoration-none text-reset"
-                        href="{{route('login')}}"><span>Login</span></a>
+                    <a class="borderMarcador nav-link  py-3 px-0 px-lg-3 rounded js-scroll-trigger text-decoration-none text-reset"
+                        href="{{route('login')}}"><span>{{__('ui.login')}}</span></a>
                 </li>
                 
                 @endif    
                 @if (Route::has('register'))
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="borderMarcador nav-link text-lowercase py-3 px-0 px-lg-3 rounded js-scroll-trigger text-decoration-none text-reset"
-                        href="{{route('register')}}"><span>Register</span></a>
+                    <a class="borderMarcador nav-link  py-3 px-0 px-lg-3 rounded js-scroll-trigger text-decoration-none text-reset"
+                        href="{{route('register')}}"><span>{{__('ui.regb')}}</span></a>
                 </li>
                 @endif
                 @else
@@ -55,12 +62,12 @@
                     </form>
                     <a id="logoutBtn"
                         class=" nav-link py-3 px-0 rounded js-scroll-trigger text-decoration-none text-reset"
-                        href="#">Logout</a>
+                        href="#">{{__('ui.logout')}}</a>
                 </li>
                 @if (Auth::user()->is_revisor)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('revisor.home') }}">
-                                Revisor Casa
+                                Revisor 
                                 <span class="badge rounded-pill bg-danger">
                                     
                                 </span>
