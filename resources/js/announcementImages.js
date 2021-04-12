@@ -13,8 +13,7 @@
                 uniqueSecret: uniqueSecret
             },
             addRemoveLinks: true,
-            init: 
-            ()=>{
+            init: ()=>{
                         fetch(`/announcement/images?uniqueSecret=${uniqueSecret}`, {
                             method: 'GET',
                           })
@@ -33,7 +32,7 @@
                                 myDropzone.options.complete.call(myDropzone,file)
                               });
                           })
-                    } 
+                    }  
                 
         });
     myDropzone.on('success', function (file, response) {

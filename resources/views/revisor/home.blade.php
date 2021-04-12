@@ -44,7 +44,7 @@
                 @foreach ($announcement->images as $image)
                     <div class="row md-2">
                     <div class="col-md-4">
-                        <img src="{{ Storage::url($image->file) }}" class="img-fluid" alt="">
+                        <img src="{{$image->getUrl(300,150)}}"  class="img-fluid" alt="">
                     </div>
                     </div>
                 @endforeach

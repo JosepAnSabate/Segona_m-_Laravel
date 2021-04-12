@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Jobs\ResizeImage;
 use Illuminate\Http\Request;
-use App\Models\AnnouncementImage;
 use App\models\Announcement; 
+use App\Models\AnnouncementImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
@@ -46,7 +47,9 @@ class HomeController extends Controller
         $a->save();
 
         $uniqueSecret = $request->input('uniqueSecret');
+       
         $images = session()->get("images.{$uniqueSecret}", []);
+        
         $removedImages = session()->get("removedImages.{$uniqueSecret}",
     []);
         $images = array_diff($images, $removedImages);
@@ -56,6 +59,9 @@ class HomeController extends Controller
             $fileName = basename($image);
             $newFilePath = "public/announcements/{$a->id}/{$fileName}";
             Storage::move($image,$newFilePath);
+            
+            dispatch(new ResizeImage($newFilePath, 300, 150));
+            
             $i->file = $newFilePath;
             $i->announcement_id = $a->id;
             $i->save();
@@ -75,11 +81,14 @@ class HomeController extends Controller
         public function uploadImages(Request $request)
         {       
         $uniqueSecret = $request->input('uniqueSecret');
-        $fileName = $request->file('file')->store('public/temp/{$uniqueSecret}');
-        session()->push("images.{$uniqueSecret}", $fileName);
+        dd($uniqueSecret);
+
+        $filePath = $request->file('file')->store("public/temp/{$uniqueSecret}");
+        dispatch(new ResizeImage($filePath,120,120));
+        session()->push("images.{$uniqueSecret}", $filePath);
         return response()->json(
             [
-                'id'=> $fileName
+                'id'=> $filePath
             ]
             
         );
@@ -95,11 +104,12 @@ class HomeController extends Controller
         }
 
         public function getImages(Request $request)
-        {       
+        {   
+               
             $uniqueSecret = $request->input('uniqueSecret');
+            
             $images = session()->get("images.{$uniqueSecret}", []);
             $removedImages = session()->get("removedImages.{$uniqueSecret}", []);
-
             $images = array_diff($images, $removedImages);
 
             $data = [];
@@ -107,13 +117,12 @@ class HomeController extends Controller
             foreach ($images as $image) {
                 $data[] = [                    
             'id' => $image,
+            'src' => AnnouncementImage::getUrlByFilePath($image, 120, 120),
             'name' => basename($image),
-            'src' => Storage::url($image),
             'size'=> Storage::size($image)
                 ];
             }
 
             return response()->json($data);
         }
-
 }
