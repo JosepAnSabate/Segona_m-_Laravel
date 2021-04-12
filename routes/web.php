@@ -17,23 +17,21 @@ use App\Http\Controllers\RevisorController;
 Route::get('/', [PublicController::class,'index'])->name('home');
 
 Route::get('/announcement/new', [HomeController::class,'newAnnouncement'])->name('announcement.new');
-
 Route::post('/announcement/create', [HomeController::class,'createAnnouncement'])->name('announcement.create');
+Route::get('/announcement/images', [HomeController::class,'getImages'])->name('announcement.images');
+Route::post('/announcement/images/upload', [HomeController::class,'uploadImages'])->name('announcement.images.upload');
+Route::delete('/announcement/images/remove', [HomeController::class,'removeImages'])->name('announcement.images.remove');
+Route::get('/announcement/{id}', [HomeController::class,'details'])->name("announcement.details");
 
 Route::get('/category/{name}/{id}/announcements', [PublicController::class,'announcementsByCategory'])->name('category.announcements');
 
-Route::get('/announcement/{id}', [HomeController::class,'details'])->name("announcement.details");
-
 Route::get('/revisor',[RevisorController::class,'index'] )->name('revisor.home');
-
-
 Route::post('/revisor/announcement/{id}/accept',[RevisorController::class,'accept'])->name('revisor.announcement.accept');
 Route::post('/revisor/announcement/{id}/reject',[RevisorController::class,'reject'])->name('revisor.announcement.reject');
 
 Route::post('/locale/{locale}', [PublicController::class,'locale'])->name('locale');
 
-Route::post('/announcement/images/upload', [HomeController::class,'uploadImages'])->name('announcement.images.upload');
 
-Route::delete('/announcement/images/remove', [HomeController::class,'removeImages'])->name('announcement.images.remove');
 
-Route::get('/aaa', [HomeController::class,'getImages'])->name('announcement.images');
+
+

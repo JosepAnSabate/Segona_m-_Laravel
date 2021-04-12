@@ -81,7 +81,7 @@ class HomeController extends Controller
         public function uploadImages(Request $request)
         {       
         $uniqueSecret = $request->input('uniqueSecret');
-        dd($uniqueSecret);
+        
 
         $filePath = $request->file('file')->store("public/temp/{$uniqueSecret}");
         dispatch(new ResizeImage($filePath,120,120));
