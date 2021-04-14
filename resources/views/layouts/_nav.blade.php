@@ -1,79 +1,103 @@
-<nav class="navbar navbar-expand-sm text-uppercase py-0 border-bottom " id="mainNav">
+<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-warning text-uppercase fs-5">
 
-    <div class="container-fluid">
-        <a class="navbar-brand  text-decoration-none text-reset prontologo"
-            href="{{ url('/') }}">Segona mà</a>
         
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-         data-bs-target="#navbarSupportedContent" 
-         aria-controls="navbarSupportedContent" aria-expanded="false" 
-         aria-label="Toggle navigation">
-        <span class="iconNav"><i class="bi bi-list"></i></span>
+        <a class="navbar-brand  text-decoration-none text-reset prontologo mx-1 fs-4"
+            href="{{ url('/') }}">
+            <img 
+        class="d-inline-block align-top"
+        src="http://afaescolacongresindians.com/wp-content/uploads/2015/10/intercanvi.jpg"
+        alt="" width="60" height="48" />
+            Segona mà
+            </a>
+        
+        <button 
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        class="navbar-toggler"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
+        <div 
+        class="collapse navbar-collapse" 
+        id="navbarNav">
+        <ul class="navbar-nav">
+        <li class="nav-item">
                   <a class="nav-link" href="{{ route('announcement.new') }}">
                   {{__('ui.nouanunci')}}
                   </a>
                 </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarSupportedContent" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Categories
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       @foreach ($categories as $category)
-                        <li><a class="dropdown-item" href="{{route('category.announcements',['name'=>$category->name,'id'=>$category->id])}}">
-                            {{$category->name}}</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        @endforeach
-                    </ul>
-                </li>
-
-                 @include('layouts._locale',["lang"=>'ca','nation'=>'ca'])  
-                 @include('layouts._locale',["lang"=>'en','nation'=>'gb'])
-            
-                @guest
-                @if (Route::has('login'))
-            
-                <li class="nav-item mx-r mx-lg-1 ">
-                    <a class="borderMarcador nav-link  py-3 px-0 px-lg-3 rounded js-scroll-trigger text-decoration-none text-reset"
-                        href="{{route('login')}}"><span>{{__('ui.login')}}</span></a>
-                </li>
-                @endif    
-                @if (Route::has('register'))
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="borderMarcador nav-link  py-3 px-0 px-lg-3 rounded js-scroll-trigger text-decoration-none text-reset"
-                        href="{{route('register')}}"><span>{{__('ui.regb')}}</span></a>
-                </li>
-                @endif
-                @else
-                <li class="nav-item mx-0 mx-lg-1">
-                    <form id="logoutForm" action="{{route('logout')}}" method="POST">
-                        @csrf
-                    </form>
-                    <a id="logoutBtn"
-                        class=" nav-link py-3 px-0 rounded js-scroll-trigger text-decoration-none text-reset"
-                        href="#">{{__('ui.logout')}}</a>
-                </li>
-                @if (Auth::user()->is_revisor)
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('revisor.home') }}">
-                        Revisor 
-                        <span class="badge rounded-pill bg-danger">
-                            
-                        </span>
-                    </a>
-                </li>
-                @endif      
-                @endguest
-                    
-                            
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle"
+            id="navbarDropdown" 
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >
+            Categories
+            </a>    
+                <ul class="dropdown-menu"
+                    aria-labelledby="navbarDropdown">
+                    @foreach ($categories as $category)
+                    <li><a class="dropdown-item" href="{{route('category.announcements',['name'=>$category->name,'id'=>$category->id])}}">
+                        {{$category->name}}</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    @endforeach
+                </ul>
+            </li>
             </ul>
-        </div>
+            
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+            @include('layouts._locale',["lang"=>'en','nation'=>'gb'])
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+            @include('layouts._locale',["lang"=>'ca','nation'=>'ca'])
+            </li>
+        </ul>
+        @guest
+        @if (Route::has('login'))
+        <ul class="navbar-nav ">
+            <li class="nav-item active">
+            <a  class="nav-link" href="{{route('login')}}"><span>{{__('ui.login')}}</span></a>
+            </li>
+        </ul>
+        @endif    
+        @if (Route::has('register'))
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+            <a  class="nav-link" href="{{route('register')}}"><span>{{__('ui.regb')}}</span></a>
+            </li>
+        </ul>
+        @endif
+        @else
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+            <form id="logoutForm" action="{{route('logout')}}" method="POST">
+         @csrf
+            </form>
+            <a id="logoutBtn"
+                class=" nav-link py-3 px-0 rounded js-scroll-trigger text-decoration-none text-reset"
+                href="#">{{__('ui.logout')}}</a>
+            </li>
+        </ul>
+        @if (Auth::user()->is_revisor)
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+            <a class="nav-link" href="{{ route('revisor.home') }}"> Revisor <span class="badge rounded-pill bg-danger"></span></a>
+            </li>
+        @endif      
+        @endguest
+        </ul>
     </div>
 </nav>
+
