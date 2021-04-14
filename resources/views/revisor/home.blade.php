@@ -3,6 +3,9 @@
 @section('content')
 <div class='container'>
 @if($announcement)
+@if(session('announcement.create.success'))
+    <div class="alert alert-success">{{session('announcement.create.success')}}</div>
+@endif
 <div class='row my-4'>
     <div class='col-12'>
         <div class="card">

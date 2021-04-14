@@ -20,9 +20,7 @@
 @endif
     <div id="app">
         @include('layouts._nav')
-        @if(session('announcement.create.success'))
-            <div class="alert alert-success">{{session('announcement.create.success')}}</div>
-        @endif
+        
         <main>
             @yield('content')
         </main>
