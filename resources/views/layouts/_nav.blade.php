@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-warning text-uppercase fs-5">
+<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-warning text-uppercase fs-5 px-3">
 
         
         <a class="navbar-brand  text-decoration-none text-reset prontologo mx-1 fs-4"
@@ -54,6 +54,7 @@
             </ul>
             
         </ul>
+        
         <ul class="navbar-nav">
             <li class="nav-item active">
             @include('layouts._locale',["lang"=>'en','nation'=>'gb'])
@@ -64,7 +65,9 @@
             @include('layouts._locale',["lang"=>'ca','nation'=>'ca'])
             </li>
         </ul>
+        <div class="d-flex w-100 justify-content-end">
         @guest
+        
         @if (Route::has('login'))
         <ul class="navbar-nav ">
             <li class="nav-item active">
@@ -98,6 +101,7 @@
         @endif      
         @endguest
         </ul>
+        </div>
     </div>
 </nav>
 
