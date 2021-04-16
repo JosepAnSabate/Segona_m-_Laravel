@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-warning text-uppercase fs-5 px-3">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-warning text-uppercase fs-5 px-3">
 
         
         <a class="navbar-brand  text-decoration-none text-reset prontologo mx-1 fs-4"
