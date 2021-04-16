@@ -21,6 +21,7 @@ return [
     'anunci'=>"Cos de l'anunci",
     'publicar'=>"Publica",
     'imatges'=>"Arrastra les imatges:",
+    'intro'=> 'Buida calaixos, trasters i armaris a canvi de DINERS.',
 
 ];
 

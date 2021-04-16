@@ -7,6 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,13 +23,10 @@
     <div id="app">
         @include('layouts._nav')
         
-        <main>
+        <main class="my-2">
             @yield('content')
         </main>
-        </div>
-
-
-
+        @include('layouts._footer')
  <script>
         const logout = document.getElementById('logoutBtn');
         if (logout) {

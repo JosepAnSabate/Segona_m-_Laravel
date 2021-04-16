@@ -24,22 +24,18 @@
         class="collapse navbar-collapse" 
         id="navbarNav">
         <ul class="navbar-nav">
-        <li class="nav-item">
-                  <a class="nav-link" href="{{ route('announcement.new') }}">
-                  {{__('ui.nouanunci')}}
-                  </a>
-                </li>
+            <li class="nav-item ms-4">
+                <a class="nav-link" href="{{ route('announcement.new') }}">{{__('ui.nouanunci')}}</a>
+            </li>
         </ul>
         <ul class="navbar-nav">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown ms-4">
             <a href="#" class="nav-link dropdown-toggle"
             id="navbarDropdown" 
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            >
-            Categories
-            </a>    
+            > Categories  </a>    
                 <ul class="dropdown-menu"
                     aria-labelledby="navbarDropdown">
                     @foreach ($categories as $category)
@@ -56,7 +52,7 @@
         </ul>
         
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item active ms-4">
             @include('layouts._locale',["lang"=>'en','nation'=>'gb'])
             </li>
         </ul>
@@ -65,7 +61,7 @@
             @include('layouts._locale',["lang"=>'ca','nation'=>'ca'])
             </li>
         </ul>
-        <div class="d-flex w-100 justify-content-end">
+        <div class="d-flex w-100 justify-content-end align-items-center">
         @guest
         
         @if (Route::has('login'))
@@ -104,4 +100,5 @@
         </div>
     </div>
 </nav>
+
 

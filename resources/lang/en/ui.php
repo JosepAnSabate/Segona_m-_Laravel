@@ -21,5 +21,6 @@ return [
     'anunci'=>"Announcement",
     'publicar'=>"Submit",
     'imatges'=>"Drop the images:",
+    'intro'=>"Empty drawers and cupboards in exchange for MONEY,"
 ];
 
